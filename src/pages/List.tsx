@@ -1,20 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import dayjs from "dayjs";
 
-export interface IListPageProps {}
+function App() {
 
-const ListPage: React.FunctionComponent<IListPageProps> = (props) => {
-  const [message] = useState("");
+    const [timer, setTimer] = useState(0);
+
+    useEffect(() => {
+
+      setInterval(() => {    
+        setTimer(timer => timer + 5);
+        
+      }, 1000)
+
+    },[] )
 
   return (
-    <div>
-      <p>Pas de liste d'animaux mais c'est en cours</p>
-      <p>{message}</p>
-      <p>
-        <Link to="/">Repars à l'accueil </Link>
-      </p>
+    <div className="App">
+      
+
+        <h1>{timer}  allez..: {dayjs().format("H[h] m[m] s[s]")} </h1>
+
     </div>
   );
-};
+  
+}
 
-export default ListPage;
+export default App;

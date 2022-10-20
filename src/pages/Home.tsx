@@ -5,19 +5,21 @@ import dayjs from "dayjs";
 export interface IHomePageProps {}
 
 const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
-  // program to display time every 5 seconds
-  function showTime() {
-    // return new date and time
-    let dateTime = new Date();
 
-    // return the time
-    let time = dateTime.toLocaleTimeString();
+  const [timer, setTimer] = useState(0);
 
-    console.log(time);
-  }
 
-  let display = setInterval(showTime, 5000);
+  useEffect(() => {
 
+    setInterval(() => {    
+      setTimer(timer => timer + 5);
+      
+    }, 1000)
+
+  },[] )
+
+
+  
   return (
     <div>
       <p>Voici l'accueil</p>
@@ -25,7 +27,7 @@ const HomePage: React.FunctionComponent<IHomePageProps> = (props) => {
         <Link to="/about">Clique sur la liste !</Link>
       </p>
 
-      <p>{dayjs().format(" dddd . h:mm A")}</p>
+      <h1>{timer}  allez..: {dayjs().format("H[h] m[m] s[s]")} </h1>
     </div>
   );
 };
